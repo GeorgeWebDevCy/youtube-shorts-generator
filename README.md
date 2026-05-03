@@ -9,6 +9,7 @@ Automatically turn your long-form YouTube videos into viral Shorts using AI.
 - Generates 9:16 vertical videos with burned-in text overlays
 - Uploads directly to YouTube as Shorts
 - Tracks processed videos in a local SQLite database
+- **Electron desktop app** with live dashboard & terminal
 
 **Tech Stack**
 - Node.js + TypeScript
@@ -202,7 +203,43 @@ node dist/index.js fetch
 - [ ] Royalty-free background music library
 - [ ] Thumbnail generation
 - [ ] Scheduling uploads (queue)
-- [ ] Web dashboard (Electron)
+- [x] ~~Web dashboard (Electron)~~ — Implemented (see Electron section above)
+
+## Electron Desktop App
+
+The project includes an Electron-based desktop UI that wraps the CLI engine.
+
+### Run the App
+
+```bash
+# 1. Install all dependencies (including electron & vite)
+npm install
+
+# 2. Build both CLI and renderer
+npm run build:all
+
+# 3. Launch the Electron app
+npm start
+```
+
+The Electron app gives you:
+- Live dashboard with stats and recent uploads
+- Command runner with presets and output streaming
+- Database viewer (tables, rows)
+- Built-in terminal log tail
+- Settings pane showing config locations
+
+Under the hood, the UI spawns the CLI (`node dist/index.js …`) as a child process and streams stdout/stderr into the terminal panel. All state is read from `data/processor.db` in real time.
+
+### Package for Distribution
+
+```bash
+# Windows installer
+npm run package:win
+
+# macOS / Linux (cross-compilation via electron-builder)
+npm run package
+```
 
 ## License
 
