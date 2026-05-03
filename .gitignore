@@ -26,3 +26,10 @@ Thumbs.db
 
 # Build artifacts
 *.tsbuildinfo
+
+# Local config with sensitive keys
+config.yaml
+
+demo/outputs/
+
+test_input*.mp4
