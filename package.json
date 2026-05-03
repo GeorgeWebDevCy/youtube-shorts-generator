@@ -1,53 +1,58 @@
 {
   "name": "youtube-shorts-generator",
   "version": "1.0.0",
-  "description": "A tool for generating YouTube Shorts content.",
-  "main": "index.js",
+  "description": "YouTube Shorts Generator \u2014 Desktop Electron App",
+  "main": "dist/electron/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx src/index.ts",
     "build": "tsc",
-    "dev": "tsx src/index.ts"
+    "build:all": "tsc && tsc electron/main.ts electron/preload.ts --outDir dist/electron --esModuleInterop --target ES2022 --moduleResolution node --module commonjs --skipLibCheck",
+    "start": "electron .",
+    "dev": "vite --config electron/renderer/vite.config.ts",
+    "lint": "eslint src --ext .ts,.tsx",
+    "package": "npm run build:all && electron-builder",
+    "package:win": "npm run build:all && electron-builder --win"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GeorgeWebDevCy/youtube-shorts-generator.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/GeorgeWebDevCy/youtube-shorts-generator/issues"
-  },
-  "homepage": "https://github.com/GeorgeWebDevCy/youtube-shorts-generator#readme",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.92.0",
-    "axios": "^1.16.0",
-    "better-sqlite3": "^12.9.0",
-    "commander": "^14.0.3",
-    "dotenv": "^17.4.2",
-    "fluent-ffmpeg": "^2.1.3",
-    "googleapis": "^171.4.0",
-    "js-yaml": "^4.1.1",
-    "openai": "^6.35.0",
-    "ora": "^9.4.0",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.3",
-    "winston": "^3.19.0",
-    "ytdl-core": "^4.11.5"
+    "electron": "^33.0.0",
+    "better-sqlite3": "^9.4.0",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "js-yaml": "^4.1.0",
+    "openai": "^4.52.0",
+    "@anthropic-ai/sdk": "^0.18.0",
+    "googleapis": "^140.0.0",
+    "ora": "^8.0.0",
+    "winston": "^3.11.0",
+    "ytdl-core": "^4.11.0",
+    "chalk": "^4.1.0",
+    "express": "^4.18.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "@types/fluent-ffmpeg": "^2.1.28",
-    "@types/js-yaml": "^4.0.9",
-    "@types/node": "^25.6.0"
+    "@vitejs/plugin-react": "^4.2.0",
+    "electron-builder": "^24.13.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "@types/better-sqlite3": "^7.6.0"
   },
-  "bin": {
-    "yts": "./dist/index.js"
-  },
-  "files": [
-    "dist",
-    "config.yaml.example",
-    ".env.example"
-  ]
+  "build": {
+    "appId": "com.georgewebdev.youtubeshorts",
+    "productName": "YouTube Shorts Generator",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    }
+  }
 }

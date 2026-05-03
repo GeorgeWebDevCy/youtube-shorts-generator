@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-900: #0a0a0a;
+  --bg-800: #0f0f0f;
+  --bg-700: #1a1a1a;
+  --bg-600: #262626;
+  --accent: #6366f1;
+  --accent-600: #5558e6;
+  --text: #e5e5e5;
+  --text-muted: #a3a3a3;
+}
+
+body { background: var(--bg-900); color: var(--text); }
+
+.btn {
+  @apply px-3 py-1.5 rounded text-sm font-medium transition-colors;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-600); }
+.btn-secondary { background: var(--bg-700); color: var(--text); border: 1px solid #333; }
+.btn-secondary:hover { background: var(--bg-600); }
+.btn-danger { background: #dc2626; color: white; }
+.btn-danger:hover { background: #b91c1c; }
+
+.input {
+  @apply bg-[#1a1a1a] border border-[#333] rounded px-3 py-1.5 text-sm focus:outline-none focus:border-[#6366f1];
+}
+
+.card {
+  @apply bg-[#1a1a1a] rounded-lg border border-[#262626] p-4;
+}
+
+.tab {
+  @apply px-4 py-2 text-sm text-[#a3a3a3] hover:text-[#e5e5e5] cursor-pointer transition-colors;
+}
+.tab-active {
+  @apply text-[#ffffff] border-b-2 border-[#6366f1];
+}
+
+.log-line { white-space: pre-wrap; word-break: break-all; }
+
+.animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }

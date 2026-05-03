@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Shorts Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { background: #0a0a0a; color: #e5e5e5; }
+      .log-line { font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 11px; line-height: 1.3; padding: 1px 4px; }
+      .tab-active { border-bottom: 2px solid #6366f1; color: #ffffff; }
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: #1a1a1a; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #444; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
