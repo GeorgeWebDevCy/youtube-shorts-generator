@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+dist/
+
+# Generated outputs
+outputs/
+videos/
+data/
+*.mp4
+*.log
+
+# Secrets
+.env
+config.local.yaml
+~/.youtube-shorts/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+*.tsbuildinfo

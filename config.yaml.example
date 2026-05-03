@@ -1,0 +1,54 @@
+# YouTube Shorts Generator Configuration
+# Copy this file to config.yaml and edit values
+
+youtube:
+  # Path to OAuth client secret JSON downloaded from Google Cloud Console
+  client_secret_file: ~/.youtube-shorts/client_secret.json
+  # Where to store the OAuth token after authentication
+  token_file: ~/.youtube-shorts/token.json
+  scopes:
+    - https://www.googleapis.com/auth/youtube
+    - https://www.googleapis.com/auth/youtube.force-ssl
+
+ai:
+  provider: openai  # openai or claude
+  openai:
+    api_key: ${OPENAI_API_KEY}
+    model: gpt-4o
+  claude:
+    api_key: ${CLAUDE_API_KEY}
+    model: claude-sonnet-4
+  prompt_templates:
+    highlight_selector: "Given video '{title}' with transcript:\n{transcript}\n\nSuggest 3 highlight moments (5–60 seconds each) for a YouTube Short. Choose moments with high engagement potential.\n\nReturn JSON array: [{'start': seconds, 'end': seconds, 'reason': 'why this moment works', 'textOverlay': 'captivating caption for on-screen text'}]"
+    metadata: "Write a viral-style YouTube Short title (≤70 chars, with emoji), description (≤300 chars), and 3–5 hashtags for a video about:\n\n{topic}\n\nReturn JSON: {'title': '...', 'description': '...', 'hashtags': ['...']}"
+
+video:
+  ffmpeg_path: /usr/bin/ffmpeg
+  resolution:
+    width: 1080
+    height: 1920
+  max_duration_sec: 60
+  min_duration_sec: 5
+  # No background music by default; set a directory to enable
+  # default_music_dir: ~/Music/background
+  # music_volume: 0.1
+  subtitle_style:
+    font: Arial
+    fontsize: 48
+    fontcolor: white
+    borderw: 3
+    bordercolor: black
+
+processing:
+  max_concurrent: 2
+  temp_dir: /tmp/youtube-shorts
+  keep_temp: false
+  output_dir: ./outputs
+
+upload:
+  category_id: 22  # People & Blogs
+  privacy: public    # public | unlisted | private
+  tags_default:
+    - shorts
+    - viral
+    - fyp
